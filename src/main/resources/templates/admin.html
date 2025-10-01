@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Zona Admin</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+
+    <style>
+        body {
+            background: linear-gradient(to right, #0077b6, #90e0ef);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        h1 {
+            color: #03045e;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-logout {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: #d00000;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .btn-logout:hover {
+            background-color: #9b0000;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>⚙️ Zona de Administración</h1>
+    <p>Solo los usuarios con rol <strong>ADMIN</strong> pueden ver esta página.</p>
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit" class="btn-logout">🚪 Cerrar sesión</button>
+    </form>
+</div>
+</body>
+</html>

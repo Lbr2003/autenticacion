@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Página Principal</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+
+    <style>
+        body {
+            background: linear-gradient(to right, #0077b6, #90e0ef);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        h1 {
+            color: #023e8a;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-admin {
+            background-color: #0077b6;
+            color: white;
+        }
+
+        .btn-admin:hover {
+            background-color: #023e8a;
+        }
+
+        .btn-logout {
+            background-color: #d00000;
+            color: white;
+        }
+
+        .btn-logout:hover {
+            background-color: #9b0000;
+        }
+
+        .user-info {
+            margin: 15px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🎉 Bienvenido</h1>
+    <p>Has iniciado sesión correctamente en la aplicación protegida con Spring Security.</p>
+
+    <!-- Mostrar el nombre del usuario conectado -->
+    <p class="user-info">Usuario conectado: <span sec:authentication="name"></span></p>
+
+    <!-- Botón visible solo para ADMIN -->
+    <div sec:authorize="hasRole('ADMIN')">
+        <form th:action="@{/admin}" method="get">
+            <button type="submit" class="btn btn-admin">⚙️ Panel administrativo</button>
+        </form>
+    </div>
+
+    <!-- Botón de logout siempre visible -->
+    <form th:action="@{/logout}" method="post">
+        <button type="submit" class="btn btn-logout">🚪 Cerrar sesión</button>
+    </form>
+</div>
+</body>
+</html>
